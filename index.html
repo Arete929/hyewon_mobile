@@ -319,6 +319,18 @@ table.tt td.today{background:color-mix(in srgb,var(--accent) 9%,var(--card))}
   padding:11px 13px;font-size:15px;margin-bottom:9px;
 }
 
+/* ── 앱 잠금(숫자판) ── */
+.lock{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center}
+.lock .llogo{width:clamp(110px,34vw,150px);height:clamp(110px,34vw,150px);object-fit:contain}.lock h1{margin:6px 0 0;font-size:24px}
+.lock .lt{font-weight:800;font-size:16px;margin:14px 0 2px}.lock .lsub{color:var(--dim);font-size:13.5px;max-width:300px;line-height:1.6;margin:6px 0 16px}
+.dots{display:flex;gap:14px;margin:12px 0 2px}.dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--dim);display:block}.dots i.on{background:var(--accent);border-color:var(--accent)}
+.dots.shake{animation:shk .4s}@keyframes shk{20%{transform:translateX(-9px)}40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.lerr{min-height:24px;margin:6px 0;color:var(--warn);font-size:13.5px;font-weight:700;max-width:300px}
+.pad{display:grid;grid-template-columns:repeat(3,76px);gap:12px;margin-top:6px}
+.pk{width:76px;height:64px;border-radius:32px;background:var(--card);border:1px solid var(--line);color:var(--fg);font-size:24px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pk:active{background:var(--soft)}.pk.fn{background:none;border-color:transparent}.pk.fn .li{width:26px;height:26px;color:var(--accent)}.pk.fn.t{font-size:15px}
+.pk:disabled{opacity:.5}
+.lforgot{margin-top:18px;background:none;border:0;color:var(--dim);font-size:13px;text-decoration:underline;cursor:pointer;padding:8px}
 /* ── 첫 화면(암호) ───────────────────────────────────── */
 .gate{max-width:460px;margin:9vh auto 0;padding:0 var(--pad);text-align:center}
 .gate img{width:clamp(140px,44vw,200px);height:clamp(140px,44vw,200px);object-fit:contain;margin-bottom:12px}   /* 로고는 크게 — 화면 폭에 맞춰 */
@@ -412,15 +424,15 @@ table.tt td.today{background:color-mix(in srgb,var(--accent) 9%,var(--card))}
 
 <script>
 /* ══════════════════════════════════════════════════════════
-   혜원이지 | @version 1.16.8
-   수정요약: v1.16.8 암호 입력창 옆 «보이기» 단추 — 눌러서 입력한 암호를 확인(다시 누르면 가림). / v1.16.7 로그인(암호) 화면 맨 아래에 버전 표시. / v1.16.6 마스커블 아이콘을 «연한 바탕(#FAFAF9) + 로고(안전 영역 크기)» 로 — 갤럭시 스플래시의 흰/빨간 테두리 박스가 보이지 않게. / v1.16.5 스플래시 — 아이콘을 «투명 배경 로고(크게)» 로, 스플래시 배경을 앱 첫 화면색(#FAFAF9)으로 바꿔 로고만 큼지막하게 보이게(네모 박스 없앰). / v1.16.4 첫 화면 문구 — «혜원여자중학교 선생님을 위해 만들었습니다.» 한 줄(안 잘림) + «폰에서 보는 혜원이지입니다.» 줄바꿈. / v1.16.3 하단 메뉴 편집에서 «더보기 안» 메뉴들도 끌어서(또는 눌러서) 순서를 바꿀 수 있음 — 이 폰에 기억. / v1.16.2 암호를 다시 폰에 기억한다 — 한 번만 넣으면 이후 비번 없이 바로 입장(1.16.1 의 «매번 입력» 되돌림, 2026-10-26 지시). / v1.16.1 암호를 폰에 기억하지 않는다 — 앱을 열 때마다 암호를 넣고 들어옴(메모리에만 보관, 예전 저장값 삭제). / v1.16.0 하단 메뉴를 지비스 폰처럼 «4칸 + 더보기» 로 — 더보기 창에서 나머지 화면을 열고, 하단 메뉴를 꾹 누르거나 «하단 메뉴 편집» 으로 끌어서 순서·구성을 바꾼다(이 폰에만 기억). 뒤로 가기는 위쪽 ‹ 로. / v1.15.0 출결 — 지각/조퇴/결과의 교시 선택·정문 칩·신청사유 예시 문구(✎ 문구, 폰에만 저장)(혜원이지 PC 와 같게). / v1.14.1 컴시간 이름 겹침(김진*)을 다리에서 «김*호» 꼴로 되돌려 담임 확인이 다시 되게 고침. / v1.14.0 문자 문구에 연결된 시트 열기(시트 아이콘 단추) · 하단 메뉴에 출결 탭. / v1.13.0 설정에서 테마 고르기(자동·화이트레드·다크민트) / 출결 목록에서 «삭제»(담임이 제 반 줄만, 앱 안 확인 뒤). / v1.12.2 연락처가 «학생기록» 시트의 «연락처» 탭에 저장됨(안내 글). / v1.12.1 홈 타일을 작게(아이콘 옆에 제목) — 첫 화면에서 메뉴가 잘리지 않고 다 보임. / v1.12.0 모양 — 기본은 «화이트 + 혜원 레드», 폰이 다크 모드면 «다크 + 민트» / 이름 외우기를 혜원이지에서 뺌(지비스 전용으로 보관) / v1.11.0 이름 외우기 — 지비스가 만든 «폰용 사진 묶음» 을 불러와(사진은 이 폰 안에만) 연습 카드·선택형·서답형·짝맞추기. / v1.10.0 연락처를 폰이 아니라 계정 드라이브의 «혜원이지 연락처» 시트에 — 담임 확인 후 우리 반 것만 불러오고(메모리로만) 폰에서 입력·붙여넣기로 시트에 저장. 문자 보내기는 시트 번호로 받는 사람을 채움. / v1.9.0 주간업무 «입력본 / 합본» 구분 — 합본은 주 목록에서 골라 한 주씩(최신이 맨 위). / v1.8.1 ★홈 타일·하단 바가 눌리지 않던 것 수정 — wire() 안의 로그인용 지역 변수 go 가 이동 함수 go() 를 가려서 «go is not a function» 이었다(v1.4.0부터). / v1.8.0 문자 문구를 «태그 → 내용 고치기 → 자동 미리보기» 작성기로 — 발송 대상(학생/학부모)별 태그(추가·저장·초기화·삭제), {이름}=성 뺀 이름·{성명}=전체, 쓰는 대로 미리보기, 줄바꿈 그대로. / v1.7.0 문자 문구 — 문구 저장·고치기·지우기, 자리표({이름} {날짜} {반} {선생님}), 연락처를 미리 등록(직접·우리 반 명단·붙여넣기·안드로이드 연락처 가져오기)해 받는 사람을 채워 문자 앱을 연다(한 사람씩). 데이터는 이 폰에만. / v1.6.0 급식 여중·여고 점심 둘 다(홈 타일 포함) · 출결(담임 확인: 컴시간 번호·가린 이름 + 역할표, 보기·새 출결 적기·방금 넣은 것 취소). / v1.5.0 시간표에 «학급 시간표» · 급식에 주 넘기기/날짜로 이동/급식지도/날짜·이름 찾기 (다리 v1.2.0 의 what=cls·duty 사용). / v1.4.0 하단 바에 뒤로·앞으로 버튼(홈은 기존 홈 탭) — 화면 기록을 history 로 쌓아 안드로이드 뒤로 버튼과도 같이 감. / v1.3.1 앱 아이콘 로고를 틀 가득(높이 104%, 뾰족한 잎 끝 약간 잘림) · 아이폰용 apple-touch-icon.png 따로. / v1.3.0 하단 내비게이션 바(홈·시간표·급식·학사일정·주간업무·바로가기) · 앱 아이콘 배경을 로고 빨강(#E9030C)으로 · 앱 안 로고는 투명 logo-512.png. / v1.2.9 마스크용 아이콘 — 로고 외접원이 캔버스를 가득(99%) 채우게 키움(흰 틀이 최대한 가려지게). / v1.2.8 앱 아이콘 — 로고를 틀 가득(any 98%·maskable 안전영역 가득) 크게, 배경 투명. / v1.2.7 표 안 글은 원래 줄바꿈 자리에서만 줄바꿈(자동 꺾임 없음) — 넓으면 좌우로 밀어 봄. / v1.2.6 주간업무 읽기 쉽게 — 줄간격 넓힘·번호/기호 내어쓰기와 단계별 들여쓰기·표를 가로로 밀어 보게 하고 짧은 칸은 한 줄로·표 머리줄/줄무늬. / v1.2.5 새로고침해도 옛 판이 뜨던 것(서비스워커) 수정 — sw.js 머리말 참고. / v1.2.4 학사일정 «1년 전체» 칩 + 묵은 탭(ok:false)이 같은 달로 겹쳐 나오던 것 제거. / v1.2.3 학사일정 — 타일 이름을 «학사일정» 으로, 달 칩으로 다른 달도 본다. / v1.2.2 타일 이모지(📘🍚📅📋🔗)를 선 아이콘으로. / v1.2.1 로그인 뒤 홈 머리글에 로고 · 화면에 보이는 버전 표기를 맞춤(그전엔 1.1.0 으로 남아 있었다). / v1.2.0 로그인 화면 로고와 설치용 앱 아이콘을 «혜원» 꽃 3D 로고(투명 배경)로 · icon-192 추가. / v1.1.0 이름을 «혜원이지» 로. / v1.0.0 첫 판 — 타일 홈 + 시간표·급식·학사일정·주간업무·바로가기
+   혜원이지 | @version 1.17.0
+   수정요약: v1.17.0 앱 잠금(지비스 폰과 같은 방식) — 학교 암호는 처음 한 번만, 그 뒤 앱을 열 때는 지문 또는 숫자 6자리로 해제. 설정에서 다시 잠기는 때·지문·숫자 바꾸기·지금 잠그기. / v1.16.7 로그인(암호) 화면 맨 아래에 버전 표시. / v1.16.6 마스커블 아이콘을 «연한 바탕(#FAFAF9) + 로고(안전 영역 크기)» 로 — 갤럭시 스플래시의 흰/빨간 테두리 박스가 보이지 않게. / v1.16.5 스플래시 — 아이콘을 «투명 배경 로고(크게)» 로, 스플래시 배경을 앱 첫 화면색(#FAFAF9)으로 바꿔 로고만 큼지막하게 보이게(네모 박스 없앰). / v1.16.4 첫 화면 문구 — «혜원여자중학교 선생님을 위해 만들었습니다.» 한 줄(안 잘림) + «폰에서 보는 혜원이지입니다.» 줄바꿈. / v1.16.3 하단 메뉴 편집에서 «더보기 안» 메뉴들도 끌어서(또는 눌러서) 순서를 바꿀 수 있음 — 이 폰에 기억. / v1.16.2 암호를 다시 폰에 기억한다 — 한 번만 넣으면 이후 비번 없이 바로 입장(1.16.1 의 «매번 입력» 되돌림, 2026-10-26 지시). / v1.16.1 암호를 폰에 기억하지 않는다 — 앱을 열 때마다 암호를 넣고 들어옴(메모리에만 보관, 예전 저장값 삭제). / v1.16.0 하단 메뉴를 지비스 폰처럼 «4칸 + 더보기» 로 — 더보기 창에서 나머지 화면을 열고, 하단 메뉴를 꾹 누르거나 «하단 메뉴 편집» 으로 끌어서 순서·구성을 바꾼다(이 폰에만 기억). 뒤로 가기는 위쪽 ‹ 로. / v1.15.0 출결 — 지각/조퇴/결과의 교시 선택·정문 칩·신청사유 예시 문구(✎ 문구, 폰에만 저장)(혜원이지 PC 와 같게). / v1.14.1 컴시간 이름 겹침(김진*)을 다리에서 «김*호» 꼴로 되돌려 담임 확인이 다시 되게 고침. / v1.14.0 문자 문구에 연결된 시트 열기(시트 아이콘 단추) · 하단 메뉴에 출결 탭. / v1.13.0 설정에서 테마 고르기(자동·화이트레드·다크민트) / 출결 목록에서 «삭제»(담임이 제 반 줄만, 앱 안 확인 뒤). / v1.12.2 연락처가 «학생기록» 시트의 «연락처» 탭에 저장됨(안내 글). / v1.12.1 홈 타일을 작게(아이콘 옆에 제목) — 첫 화면에서 메뉴가 잘리지 않고 다 보임. / v1.12.0 모양 — 기본은 «화이트 + 혜원 레드», 폰이 다크 모드면 «다크 + 민트» / 이름 외우기를 혜원이지에서 뺌(지비스 전용으로 보관) / v1.11.0 이름 외우기 — 지비스가 만든 «폰용 사진 묶음» 을 불러와(사진은 이 폰 안에만) 연습 카드·선택형·서답형·짝맞추기. / v1.10.0 연락처를 폰이 아니라 계정 드라이브의 «혜원이지 연락처» 시트에 — 담임 확인 후 우리 반 것만 불러오고(메모리로만) 폰에서 입력·붙여넣기로 시트에 저장. 문자 보내기는 시트 번호로 받는 사람을 채움. / v1.9.0 주간업무 «입력본 / 합본» 구분 — 합본은 주 목록에서 골라 한 주씩(최신이 맨 위). / v1.8.1 ★홈 타일·하단 바가 눌리지 않던 것 수정 — wire() 안의 로그인용 지역 변수 go 가 이동 함수 go() 를 가려서 «go is not a function» 이었다(v1.4.0부터). / v1.8.0 문자 문구를 «태그 → 내용 고치기 → 자동 미리보기» 작성기로 — 발송 대상(학생/학부모)별 태그(추가·저장·초기화·삭제), {이름}=성 뺀 이름·{성명}=전체, 쓰는 대로 미리보기, 줄바꿈 그대로. / v1.7.0 문자 문구 — 문구 저장·고치기·지우기, 자리표({이름} {날짜} {반} {선생님}), 연락처를 미리 등록(직접·우리 반 명단·붙여넣기·안드로이드 연락처 가져오기)해 받는 사람을 채워 문자 앱을 연다(한 사람씩). 데이터는 이 폰에만. / v1.6.0 급식 여중·여고 점심 둘 다(홈 타일 포함) · 출결(담임 확인: 컴시간 번호·가린 이름 + 역할표, 보기·새 출결 적기·방금 넣은 것 취소). / v1.5.0 시간표에 «학급 시간표» · 급식에 주 넘기기/날짜로 이동/급식지도/날짜·이름 찾기 (다리 v1.2.0 의 what=cls·duty 사용). / v1.4.0 하단 바에 뒤로·앞으로 버튼(홈은 기존 홈 탭) — 화면 기록을 history 로 쌓아 안드로이드 뒤로 버튼과도 같이 감. / v1.3.1 앱 아이콘 로고를 틀 가득(높이 104%, 뾰족한 잎 끝 약간 잘림) · 아이폰용 apple-touch-icon.png 따로. / v1.3.0 하단 내비게이션 바(홈·시간표·급식·학사일정·주간업무·바로가기) · 앱 아이콘 배경을 로고 빨강(#E9030C)으로 · 앱 안 로고는 투명 logo-512.png. / v1.2.9 마스크용 아이콘 — 로고 외접원이 캔버스를 가득(99%) 채우게 키움(흰 틀이 최대한 가려지게). / v1.2.8 앱 아이콘 — 로고를 틀 가득(any 98%·maskable 안전영역 가득) 크게, 배경 투명. / v1.2.7 표 안 글은 원래 줄바꿈 자리에서만 줄바꿈(자동 꺾임 없음) — 넓으면 좌우로 밀어 봄. / v1.2.6 주간업무 읽기 쉽게 — 줄간격 넓힘·번호/기호 내어쓰기와 단계별 들여쓰기·표를 가로로 밀어 보게 하고 짧은 칸은 한 줄로·표 머리줄/줄무늬. / v1.2.5 새로고침해도 옛 판이 뜨던 것(서비스워커) 수정 — sw.js 머리말 참고. / v1.2.4 학사일정 «1년 전체» 칩 + 묵은 탭(ok:false)이 같은 달로 겹쳐 나오던 것 제거. / v1.2.3 학사일정 — 타일 이름을 «학사일정» 으로, 달 칩으로 다른 달도 본다. / v1.2.2 타일 이모지(📘🍚📅📋🔗)를 선 아이콘으로. / v1.2.1 로그인 뒤 홈 머리글에 로고 · 화면에 보이는 버전 표기를 맞춤(그전엔 1.1.0 으로 남아 있었다). / v1.2.0 로그인 화면 로고와 설치용 앱 아이콘을 «혜원» 꽃 3D 로고(투명 배경)로 · icon-192 추가. / v1.1.0 이름을 «혜원이지» 로. / v1.0.0 첫 판 — 타일 홈 + 시간표·급식·학사일정·주간업무·바로가기
 
    ★ 폰은 아무것도 긁지 않는다. «다리»(GAS)가 다 긁어서 정리해 준 것만 받는다.
      폰 브라우저는 남의 사이트를 직접 못 부르기 때문이다(같은 출처 규칙).
    ★ 드롭다운(select)은 쓰지 않는다 — 칩·단추로 고른다.
    ══════════════════════════════════════════════════════════ */
 
-var VERSION = '1.16.8';
+var VERSION = '1.17.0';
 /* ── 테마 — auto(폰 설정을 따름) · light(화이트+혜원 레드) · dark(다크+민트). 고른 것은 이 폰에만 기억한다 ── */
 var THEMES = [['auto', '자동', ['#FAFAF9', '#C1121F', '#0E1413', '#5EEAD4']], ['light', '화이트·레드', ['#FAFAF9', '#FFFFFF', '#FCE9EA', '#C1121F']], ['dark', '다크·민트', ['#0E1413', '#172120', '#12302D', '#5EEAD4']]];
 var THEME = (function () { var t = ''; try { t = localStorage.getItem('phone.theme') || ''; } catch (e) { /* */ } return /^(auto|light|dark)$/.test(t) ? t : 'auto'; })();
@@ -613,6 +625,8 @@ var LINE_IC = {
   link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>'
 };
 LINE_IC.more = '<circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/>';
+LINE_IC.fingerprint = '<path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/>';
+LINE_IC.back = '<path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="m18 9-6 6"/><path d="m12 9 6 6"/>';
 LINE_IC.gear = '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>';
 LINE_IC.grip = '<circle cx="9" cy="6" r="1.4"/><circle cx="15" cy="6" r="1.4"/><circle cx="9" cy="12" r="1.4"/><circle cx="15" cy="12" r="1.4"/><circle cx="9" cy="18" r="1.4"/><circle cx="15" cy="18" r="1.4"/>';
 LINE_IC.edit = '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>';
@@ -1630,6 +1644,7 @@ function FEEDURL() {
 
 /* ── 설정 ────────────────────────────────────────────── */
 var CHANGES = [
+  { v: '1.17.0', items: ['앱 잠금이 생겼어요 — 학교 암호는 처음 한 번만 넣고, 그 뒤로는 지문 또는 숫자 6자리로 열어요. 숫자를 잊으면 학교 암호로 다시 들어오면 돼요'] },
   { v: '1.16.3', items: ['하단 메뉴 편집에서 «더보기 안» 메뉴도 끌어서 순서를 바꿀 수 있어요'] },
   { v: '1.16.2', items: ['암호는 한 번만 넣으면 폰이 기억해요 — 앱을 열면 비번 없이 바로 들어갑니다'] },
   { v: '1.16.1', items: ['암호를 폰에 저장하지 않아요 — 앱을 열 때마다 학교 공용 암호를 넣고 들어옵니다'] },
@@ -1673,6 +1688,7 @@ function viewSet() {
     + '<div class="card"><h2>자료</h2>'
     + '<p class="muted" style="margin:0 0 10px">받은 때 · ' + esc((D && D.at) || '—') + '</p>'
     + '<button class="btn ghost" id="reload">지금 새로 받기</button></div>'
+    + lockSettingsHtml()
     + '<div class="card"><h2>암호</h2>'
     + '<button class="btn ghost" id="forget">이 폰에서 암호 지우기</button></div>'
     + '<div class="foot">혜원이지 v' + VERSION + '</div>';
@@ -1858,6 +1874,7 @@ window.addEventListener('popstate', function (e) {
   VIEW = st.v; meQ = ''; draw(); window.scrollTo(0, 0);
 });
 function draw() {
+  if (LOCK.flow) { APP.innerHTML = viewLock(); lockWire(); return; }
   if (VIEW === 'gate') { APP.innerHTML = viewGate(); wire(); return; }
   var body;
   if (LOADING && !D) body = '<div class="spin">불러오는 중…</div>';
@@ -2062,17 +2079,20 @@ function wire() {
     var gateGo = function () {
       var v = ($('gKey').value || '').trim();
       if (!v) return;
-      KEY = v; LS.set('key', v); ERR = ''; VIEW = 'home'; histReset(); load();
+      KEY = v; LS.set('key', v); ERR = ''; VIEW = 'home'; histReset(); lockStart();
     };
     g.addEventListener('click', gateGo);
     $('gKey').addEventListener('keydown', function (e) { if (e.key === 'Enter') gateGo(); });
     $('gKey').focus();
   }
+  APP.querySelectorAll('[data-lkset]').forEach(function (b) {
+    b.addEventListener('click', function () { lockSetAct(b.dataset.lkset, b.dataset.v); });
+  });
   var r = $('reload');
   if (r) r.addEventListener('click', function () { load(true); });
   var f = $('forget');
   if (f) f.addEventListener('click', function () {
-    LS.del('key'); KEY = ''; D = null; VIEW = 'gate'; draw();
+    LS.del('key'); LS.del('lock'); LS.del('lfail'); KEY = ''; D = null; VIEW = 'gate'; draw();
   });
 }
 /* 검색칸만 다시 그리면 커서가 튄다 — 목록만 갈아 끼운다 */
@@ -2125,15 +2145,194 @@ function redrawKeep(q) {
   $('nvBtn').addEventListener('click', function () { location.reload(); });
 })();
 
+/* ══ 앱 잠금 — 지문(기기 생체 인증) 우선, 숫자 6자리는 대신 여는 열쇠 (지비스 폰과 같은 방식, v1.17.0) ═══════════
+   ★ 학교 암호는 «처음 한 번» 넣는다. 그 뒤로 앱을 열 때는 이 잠금(지문 또는 숫자 6자리)으로 들어온다.
+   ★ 이 잠금은 «화면을 가리는» 잠금이다 — 폰 화면 잠금도 꼭 켜 둘 것.
+   ★ 지문은 WebAuthn(기기 안의 인증기)으로 확인한다 — 지문 정보는 앱도 서버도 보지 못하고, «본인 확인이 됐다/안 됐다» 만 돌아온다.
+   ★ 숫자는 PBKDF2(12만 번)로 섞어 저장한다. 틀리면 5번째부터 30초·1분·2분… 기다리게 한다(최대 15분).
+   ★ 잠기면 메모리의 학생 자료(출결·연락처)부터 치운다. */
+var PIN_LEN = 6;
+var LOCK = { on: false, flow: null, buf: '', err: '', busy: false, hiddenAt: 0, shake: false };
+function lockCfg() { try { var c = JSON.parse(LS.get('lock', 'null')); return (c && c.hash && c.salt) ? c : null; } catch (e) { return null; } }
+function lockSaveCfg(c) { LS.set('lock', JSON.stringify(c)); }
+function b64(buf) { var a = new Uint8Array(buf), s = ''; for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return btoa(s); }
+function unb64(s) { var bin = atob(s), a = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i); return a; }
+function pinHash(pin, salt) {
+  var enc = new TextEncoder();
+  return crypto.subtle.importKey('raw', enc.encode(pin), 'PBKDF2', false, ['deriveBits'])
+    .then(function (k) { return crypto.subtle.deriveBits({ name: 'PBKDF2', salt: unb64(salt), iterations: 120000, hash: 'SHA-256' }, k, 256); })
+    .then(b64);
+}
+function lockWait() {      // 지금 기다려야 하는 초(없으면 0)
+  try { var f = JSON.parse(LS.get('lfail', 'null')); if (f && f.until > Date.now()) return Math.ceil((f.until - Date.now()) / 1000); } catch (e) { /* */ }
+  return 0;
+}
+function lockFail() {
+  var f = { n: 0, until: 0 }; try { f = JSON.parse(LS.get('lfail', 'null')) || f; } catch (e) { /* */ }
+  f.n = (f.n || 0) + 1; f.until = f.n >= 5 ? Date.now() + Math.min(900000, 30000 * Math.pow(2, f.n - 5)) : 0;
+  LS.set('lfail', JSON.stringify(f));
+}
+function lockOk() { LS.del('lfail'); }
+
+/* 잠금 화면에 «숫자판 흐름» 을 올린다 */
+function lockFlow(kind, step) { LOCK.flow = { kind: kind, step: step, first: '' }; LOCK.buf = ''; LOCK.err = ''; LOCK.on = (kind === 'unlock' || kind === 'setup'); draw(); }
+function lockStart() {         // 앱을 열 때 — 암호가 있는 폰이면 잠금(또는 처음 설정)부터
+  if (!KEY) { LOCK.on = false; LOCK.flow = null; return false; }
+  if (!lockCfg()) lockFlow('setup', 'new'); else { lockFlow('unlock', 'pin'); lockBioAuto(); }
+  return true;
+}
+function lockNow() { if (!KEY || !lockCfg() || LOCK.flow) return; wipeMem(); lockFlow('unlock', 'pin'); lockBioAuto(); }
+function wipeMem() {           // 잠기면 메모리의 학생 자료부터 치운다(출결·연락처)
+  try {
+    ATT.rows = null; ATT.roster = null; ATT.form = null; ATT.last = null; ATT.me = null; ATT.st = 'idle'; ATT.busy = false;
+    SMS.cons = {}; SMS.consLoaded = false; SMS.rosterList = null; SMS.who = ''; SMS.num = '';
+  } catch (e) { /* 아직 안 만든 것이 있어도 괜찮다 */ }
+}
+function lockDone() {          // 열림 — 자료를 새로 받는다
+  LOCK.flow = null; LOCK.on = false; LOCK.buf = ''; LOCK.err = ''; if (VIEW === 'gate') VIEW = 'home';
+  histReset(); draw(); load();
+}
+
+/* ── 지문 ── */
+function bioSupported() { return !!(window.PublicKeyCredential && navigator.credentials && navigator.credentials.create); }
+function bioRegister() {
+  var ch = crypto.getRandomValues(new Uint8Array(32)), uid = crypto.getRandomValues(new Uint8Array(16));
+  return navigator.credentials.create({ publicKey: { challenge: ch, rp: { name: '혜원이지' }, user: { id: uid, name: 'hyewon', displayName: '선생님' },
+    pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }], timeout: 60000, attestation: 'none',
+    authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required', residentKey: 'discouraged' } } })
+    .then(function (c) { return b64(c.rawId); });
+}
+function bioCheck(id) {
+  return navigator.credentials.get({ publicKey: { challenge: crypto.getRandomValues(new Uint8Array(32)), timeout: 60000, userVerification: 'required',
+    allowCredentials: [{ type: 'public-key', id: unb64(id), transports: ['internal'] }] } }).then(function () { return true; });
+}
+function lockBioAuto() { var c = lockCfg(); if (c && c.bio && bioSupported()) setTimeout(lockBio, 250); }
+function lockBio() {
+  var c = lockCfg(); if (!c || !c.bio || LOCK.busy || !LOCK.flow || LOCK.flow.kind !== 'unlock') return;
+  LOCK.busy = true;
+  bioCheck(c.bio).then(function () { LOCK.busy = false; lockOk(); lockDone(); })
+    .catch(function () { LOCK.busy = false; /* 취소·실패 — 숫자로 열면 된다 */ });
+}
+
+/* ── 숫자판 ── */
+function lockKey(d) {
+  if (LOCK.busy || !LOCK.flow) return;
+  var w = (LOCK.flow.kind === 'unlock' || LOCK.flow.step === 'old') ? lockWait() : 0;
+  if (w) { LOCK.err = w + '초 뒤에 다시 해 주세요'; draw(); return; }
+  if (d === 'del') { LOCK.buf = LOCK.buf.slice(0, -1); LOCK.err = ''; draw(); return; }
+  if (LOCK.buf.length >= PIN_LEN) return;
+  LOCK.buf += d; LOCK.err = '';
+  if (LOCK.buf.length < PIN_LEN) { draw(); return; }
+  var pin = LOCK.buf; LOCK.buf = ''; LOCK.busy = true; draw();
+  lockSubmit(pin).then(function () { LOCK.busy = false; draw(); }, function () { LOCK.busy = false; LOCK.err = '확인하지 못했습니다'; draw(); });
+}
+function lockSubmit(pin) {
+  var f = LOCK.flow, c = lockCfg();
+  if (f.kind === 'unlock' || f.step === 'old') {
+    return pinHash(pin, c.salt).then(function (h) {
+      if (h === c.hash) { lockOk(); if (f.kind === 'unlock') lockDone(); else { f.step = 'new'; LOCK.err = ''; } }
+      else { lockFail(); var w = lockWait(); LOCK.err = w ? '여러 번 틀렸습니다 — ' + w + '초 뒤에 다시' : '숫자가 맞지 않습니다'; LOCK.shake = true; }
+    });
+  }
+  if (f.step === 'new') { f.first = pin; f.step = 'again'; return Promise.resolve(); }
+  if (f.step === 'again') {
+    if (pin !== f.first) { f.step = 'new'; f.first = ''; LOCK.err = '두 번이 서로 달라요 — 처음부터 다시 정해 주세요'; return Promise.resolve(); }
+    var salt = b64(crypto.getRandomValues(new Uint8Array(16)));
+    return pinHash(pin, salt).then(function (h) {
+      var old = lockCfg() || {};
+      lockSaveCfg({ salt: salt, hash: h, bio: old.bio || '', after: old.after == null ? 60 : old.after });
+      lockOk();
+      if (f.kind === 'setup' && bioSupported()) { f.step = 'bio'; } else if (f.kind === 'setup') lockDone(); else { LOCK.flow = null; LOCK.err = ''; draw(); toast('숫자를 바꿨습니다'); }
+    });
+  }
+  return Promise.resolve();
+}
+function lockTitle() {
+  var f = LOCK.flow; if (!f) return '';
+  if (f.kind === 'unlock') return '잠겨 있습니다';
+  if (f.step === 'old') return '지금 쓰는 숫자 6자리';
+  if (f.step === 'new') return f.kind === 'setup' ? '앱을 열 때 쓸 숫자 6자리를 정하세요' : '새 숫자 6자리';
+  if (f.step === 'again') return '한 번 더 눌러 주세요';
+  return '';
+}
+function viewLock() {
+  var f = LOCK.flow, c = lockCfg();
+  var h = '<main class="lock"><img class="llogo" src="logo-512.png" alt=""><h1>혜원이지</h1>';
+  if (f.step === 'bio') {
+    return h + '<p class="lt">지문으로도 열까요?</p><p class="lsub">폰에 등록된 지문(또는 얼굴)으로 확인합니다. 숫자는 그대로 남아 있어 지문이 안 될 때 쓸 수 있습니다.</p>'
+      + '<button type="button" class="btn" data-lk="bioon">' + lineIc('fingerprint') + ' 지문으로 열기 켜기</button>'
+      + '<button type="button" class="btn ghost" style="margin-top:10px" data-lk="biolater">나중에</button>'
+      + '<div class="lerr" role="status">' + esc(LOCK.err) + '</div></main>';
+  }
+  var dots = ''; for (var i = 0; i < PIN_LEN; i++) dots += '<i class="' + (i < LOCK.buf.length ? 'on' : '') + '"></i>';
+  h += '<p class="lt">' + esc(lockTitle()) + '</p><div class="dots' + (LOCK.shake ? ' shake' : '') + '" aria-label="입력한 숫자 ' + LOCK.buf.length + '개">' + dots + '</div>'
+    + '<div class="lerr" role="status">' + esc(LOCK.err) + '</div><div class="pad" role="group" aria-label="숫자판">';
+  [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function (n) { h += '<button type="button" class="pk" data-lk="k" data-v="' + n + '"' + (LOCK.busy ? ' disabled' : '') + '>' + n + '</button>'; });
+  var bio = f.kind === 'unlock' && c && c.bio && bioSupported();
+  h += (bio ? '<button type="button" class="pk fn" data-lk="bio" aria-label="지문으로 열기">' + lineIc('fingerprint') + '</button>'
+      : (f.kind === 'change' ? '<button type="button" class="pk fn t" data-lk="cancel">취소</button>' : '<span></span>'))
+    + '<button type="button" class="pk" data-lk="k" data-v="0"' + (LOCK.busy ? ' disabled' : '') + '>0</button>'
+    + '<button type="button" class="pk fn" data-lk="k" data-v="del" aria-label="지우기">' + lineIc('back') + '</button></div>';
+  if (f.kind === 'unlock') h += '<button type="button" class="lforgot" data-lk="forgot">숫자를 잊었어요 — 학교 암호로 다시 들어가기</button>';
+  return h + '</main>';
+}
+function lockWire() {
+  APP.querySelectorAll('[data-lk]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var a = b.dataset.lk;
+      if (a === 'k') lockKey(b.dataset.v);
+      else if (a === 'bio') lockBio();
+      else if (a === 'cancel') { LOCK.flow = null; LOCK.on = false; LOCK.buf = ''; LOCK.err = ''; draw(); }
+      else if (a === 'forgot') {                  // 숫자를 잊었다 — 잠금과 저장된 암호를 지우고 학교 암호부터 다시
+        LS.del('lock'); LS.del('lfail'); LS.del('key'); LS.del('cache'); KEY = ''; D = null; wipeMem();
+        LOCK.flow = null; LOCK.on = false; LOCK.buf = ''; LOCK.err = ''; VIEW = 'gate'; draw();
+      }
+      else if (a === 'bioon') {
+        bioRegister().then(function (id) { var c = lockCfg(); if (c) { c.bio = id; lockSaveCfg(c); } lockDone(); })
+          .catch(function (e) { LOCK.err = '지문을 켜지 못했습니다' + (e && e.name === 'NotAllowedError' ? ' (취소됐거나 폰에 지문이 등록돼 있지 않습니다)' : ''); draw(); });
+      }
+      else if (a === 'biolater') lockDone();
+    });
+  });
+  if (LOCK.shake) setTimeout(function () { LOCK.shake = false; }, 500);
+}
+/* 설정 화면용 조각 */
+function lockSettingsHtml() {
+  var c = lockCfg(); if (!c) return '';
+  var after = c.after == null ? 60 : c.after;
+  return '<div class="card"><h2>잠금</h2>'
+    + '<div class="att-lab">다시 잠기는 때 <small>(앱을 벗어난 뒤)</small></div><div class="chips">' + [[0, '바로'], [60, '1분 뒤'], [300, '5분 뒤']].map(function (o) {
+      return '<button type="button" class="chip' + (after === o[0] ? ' on' : '') + '" data-lkset="after" data-v="' + o[0] + '" aria-pressed="' + (after === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>'
+    + '<div class="att-lab">지문으로 열기</div><div class="chips">'
+    + (bioSupported() ? '<button type="button" class="chip' + (c.bio ? ' on' : '') + '" data-lkset="bio" data-v="' + (c.bio ? '0' : '1') + '" aria-pressed="' + (!!c.bio) + '">' + (c.bio ? '켜져 있음 · 끄기' : '꺼져 있음 · 켜기') + '</button>' : '<span class="muted">이 기기는 지문 확인을 지원하지 않습니다</span>') + '</div>'
+    + '<div class="mlrow" style="margin-top:12px"><button type="button" class="btn ghost" data-lkset="pin">숫자 바꾸기</button><button type="button" class="btn ghost" data-lkset="now">지금 잠그기</button></div></div>';
+}
+function lockSetAct(a, v) {
+  var c = lockCfg(); if (!c) return;
+  if (a === 'after') { c.after = Number(v); lockSaveCfg(c); draw(); }
+  else if (a === 'bio') {
+    if (v === '0') { c.bio = ''; lockSaveCfg(c); draw(); }
+    else bioRegister().then(function (id) { var k = lockCfg(); k.bio = id; lockSaveCfg(k); draw(); toast('지문으로 열기를 켰습니다'); }).catch(function () { toast('지문을 켜지 못했습니다'); });
+  }
+  else if (a === 'pin') lockFlow('change', 'old');
+  else if (a === 'now') lockNow();
+}
+document.addEventListener('visibilitychange', function () {
+  if (document.hidden) { LOCK.hiddenAt = Date.now(); return; }
+  var c = lockCfg();
+  if (c && KEY && !LOCK.flow && LOCK.hiddenAt && Date.now() - LOCK.hiddenAt >= (c.after == null ? 60 : c.after) * 1000) lockNow();
+  LOCK.hiddenAt = 0;
+});
+
 /* ══ 시작 ═══════════════════════════════════════════════ */
 (function () {
   var c = LS.get('cache', '');
   if (c) { try { D = JSON.parse(c); } catch (e) {} }   // 먼저 지난 것을 보여 준다
   if (!KEY) { VIEW = 'gate'; draw(); }
-  else { histReset(); draw(); load(); }
+  else { histReset(); lockStart(); }
   /* 앱을 다시 앞으로 꺼낼 때 자료도 같이 새로 받는다 */
   document.addEventListener('visibilitychange', function () {
-    if (!document.hidden && KEY && !LOADING) load();
+    if (!document.hidden && KEY && !LOADING && !LOCK.flow) load();
   });
 })();
 </script>
