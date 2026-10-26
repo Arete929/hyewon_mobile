@@ -236,6 +236,9 @@ table.tt.cl td u{display:block;text-decoration:none;font-size:10px;color:var(--d
 .card h2{margin:0 0 8px;font-size:13px;font-weight:700;color:var(--dim);letter-spacing:.2px}
 .row{display:flex;gap:9px;align-items:baseline;padding:6px 0}
 .row+.row{border-top:1px solid var(--line)}
+/* 학년 일정(업무 일정) 꼬리표 — 학교 일정과 섞여도 어느 학년 것인지 알아보게 */
+.gtag{display:inline-block;font-size:11px;font-weight:800;padding:1px 7px;border-radius:999px;margin-right:4px;white-space:nowrap;background:color-mix(in srgb,var(--accent) 16%,var(--bg));color:var(--accent)}.gtag.c{background:var(--card);color:var(--fg2)}
+.gsub{display:block;font-size:12px;color:var(--dim);margin-top:2px;line-height:1.45}.gdone{text-decoration:line-through;opacity:.6}
 .row i{font-style:normal;font-size:12px;font-weight:800;color:var(--accent);flex:0 0 auto;min-width:38px}
 .row b{font-weight:800;flex:0 0 auto}
 .row span{color:var(--fg2);min-width:0;font-size:14px}
@@ -330,6 +333,41 @@ table.tt td.today{background:color-mix(in srgb,var(--accent) 9%,var(--card))}
 .imgzoom .izin{min-width:100%;width:max-content;padding:56px 10px 24px}
 .imgzoom img{display:block;width:180vw;max-width:none;height:auto;background:#fff;border-radius:6px}
 .imgzoom .izx{position:fixed;top:max(10px,env(safe-area-inset-top));right:12px;z-index:96;width:44px;height:44px;border-radius:22px;border:0;background:rgba(255,255,255,.92);color:#222;font-size:20px;font-weight:800;cursor:pointer}
+/* ── 홈: 정보를 펼친 카드 (지비스 폰과 같은 모양) ── */
+.hgrid{display:grid;grid-template-columns:1fr;gap:0}
+@media (min-width:700px){.hgrid{grid-template-columns:1fr 1fr;gap:0 12px;align-items:start}}
+.hcard{all:unset;box-sizing:border-box;display:block;width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:14px 16px;margin-bottom:10px;box-shadow:var(--sh);cursor:pointer}
+.hcard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hcard .hh{display:flex;align-items:center;gap:8px;margin-bottom:8px;color:var(--accent)}.hcard .hh .li{width:20px;height:20px}
+.hcard .hh b{color:var(--fg);font-size:15px;flex:1}.hcard .chev .li{width:18px;height:18px;color:var(--dim)}.hcard .chev{line-height:0}
+.hcard .hb{display:block;font-size:14px;line-height:1.6}
+.hcard-x{cursor:default}
+.hcard button.hh{all:unset;box-sizing:border-box;width:100%;min-height:44px;display:flex;align-items:center;gap:8px;margin-bottom:4px;color:var(--accent);cursor:pointer}
+.hcard button.hh:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px}
+.hcard button.hh b{color:var(--fg);font-size:15px;flex:1}
+.hcard button.hh .li{width:20px;height:20px}
+.hcard .chips.hsch{margin:0 0 10px}
+.plist{list-style:none;margin:0;padding:0}.plist li{display:flex;gap:10px;align-items:baseline;padding:6px 0;border-top:1px solid var(--line)}.plist li:first-child{border-top:0}
+.plist li b{width:48px;flex:none;color:var(--dim);font-size:13px}.plist li span{min-width:0;overflow-wrap:anywhere}.plist li.now{font-weight:800}.plist li.now b{color:var(--accent)}.plist li.past{opacity:.7}
+.plist li small{color:var(--dim);font-size:12px;margin-left:6px}
+.plist li em{margin-left:auto;font-style:normal;font-size:12px;font-weight:800;padding:2px 9px;border-radius:999px;background:var(--accent);color:var(--on);white-space:nowrap}
+.hdish{display:flex;flex-wrap:wrap;gap:6px}
+.hdish span{padding:5px 11px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:14px;line-height:1.4;overflow-wrap:anywhere;word-break:keep-all}
+.hcard .kc{margin-top:8px}
+.allin{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--ok) 14%,var(--bg));color:color-mix(in srgb,var(--ok) 68%,var(--fg));font-weight:800;font-size:16px}
+.allin .li{width:24px;height:24px;flex:none}
+.alist{list-style:none;margin:0;padding:0}
+.alist li{padding:9px 0;border-top:1px solid var(--line)}.alist li:first-child{border-top:0;padding-top:2px}
+.alist .al1{display:flex;flex-wrap:wrap;align-items:center;gap:7px}.alist .al1 b{font-size:16px}.alist .al1 small{color:var(--dim)}
+.alist .al2{margin-top:4px;font-size:14px;line-height:1.5;color:var(--fg2);overflow-wrap:anywhere;word-break:keep-all}
+.att-type{font-weight:800;padding:1px 8px;border-radius:999px;font-size:12px;background:var(--card2)}
+.att-type.ill{background:color-mix(in srgb,var(--warn) 18%,var(--bg));color:color-mix(in srgb,var(--warn) 68%,var(--fg))}
+.att-type.rec{background:color-mix(in srgb,var(--ok) 16%,var(--bg));color:color-mix(in srgb,var(--ok) 68%,var(--fg))}
+.astat2{margin-top:8px;font-size:13px;color:var(--dim)}
+.mrow{padding:2px 0}.mrow b{margin-right:8px;color:var(--accent)}
+.qrow{display:flex;gap:10px;margin:2px 0 10px}
+.qrow button{flex:1;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:var(--rad);color:var(--fg2);font-size:13px;font-weight:700;cursor:pointer}
+.qrow button .li{width:22px;height:22px;color:var(--accent)}
 /* ── 앱 잠금(숫자판) ── */
 .lock{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center}
 .lock .llogo{width:clamp(110px,34vw,150px);height:clamp(110px,34vw,150px);object-fit:contain}.lock h1{margin:6px 0 0;font-size:24px}
@@ -435,15 +473,15 @@ table.tt td.today{background:color-mix(in srgb,var(--accent) 9%,var(--card))}
 
 <script>
 /* ══════════════════════════════════════════════════════════
-   혜원이지 | @version 1.18.0
-   수정요약: v1.18.0 주간업무에 붙은 그림을 원본 그대로 보여 준다(다리 1.1.0 의 img 덩어리) — 표 칸 안·밖 제자리, 누르면 크게(가로로 밀어 읽기), 그림은 폰 저장소에 안 담음. / v1.17.1 시간표 — 오른쪽 요일이 잘리던 것(칸 폭 고정·화면 폭에 맞춤)과 학급 정보 없는 칸의 «null-null» 표시(과목만) 고침. / v1.17.0 앱 잠금(지비스 폰과 같은 방식) — 학교 암호는 처음 한 번만, 그 뒤 앱을 열 때는 지문 또는 숫자 6자리로 해제. 설정에서 다시 잠기는 때·지문·숫자 바꾸기·지금 잠그기. / v1.16.7 로그인(암호) 화면 맨 아래에 버전 표시. / v1.16.6 마스커블 아이콘을 «연한 바탕(#FAFAF9) + 로고(안전 영역 크기)» 로 — 갤럭시 스플래시의 흰/빨간 테두리 박스가 보이지 않게. / v1.16.5 스플래시 — 아이콘을 «투명 배경 로고(크게)» 로, 스플래시 배경을 앱 첫 화면색(#FAFAF9)으로 바꿔 로고만 큼지막하게 보이게(네모 박스 없앰). / v1.16.4 첫 화면 문구 — «혜원여자중학교 선생님을 위해 만들었습니다.» 한 줄(안 잘림) + «폰에서 보는 혜원이지입니다.» 줄바꿈. / v1.16.3 하단 메뉴 편집에서 «더보기 안» 메뉴들도 끌어서(또는 눌러서) 순서를 바꿀 수 있음 — 이 폰에 기억. / v1.16.2 암호를 다시 폰에 기억한다 — 한 번만 넣으면 이후 비번 없이 바로 입장(1.16.1 의 «매번 입력» 되돌림, 2026-10-26 지시). / v1.16.1 암호를 폰에 기억하지 않는다 — 앱을 열 때마다 암호를 넣고 들어옴(메모리에만 보관, 예전 저장값 삭제). / v1.16.0 하단 메뉴를 지비스 폰처럼 «4칸 + 더보기» 로 — 더보기 창에서 나머지 화면을 열고, 하단 메뉴를 꾹 누르거나 «하단 메뉴 편집» 으로 끌어서 순서·구성을 바꾼다(이 폰에만 기억). 뒤로 가기는 위쪽 ‹ 로. / v1.15.0 출결 — 지각/조퇴/결과의 교시 선택·정문 칩·신청사유 예시 문구(✎ 문구, 폰에만 저장)(혜원이지 PC 와 같게). / v1.14.1 컴시간 이름 겹침(김진*)을 다리에서 «김*호» 꼴로 되돌려 담임 확인이 다시 되게 고침. / v1.14.0 문자 문구에 연결된 시트 열기(시트 아이콘 단추) · 하단 메뉴에 출결 탭. / v1.13.0 설정에서 테마 고르기(자동·화이트레드·다크민트) / 출결 목록에서 «삭제»(담임이 제 반 줄만, 앱 안 확인 뒤). / v1.12.2 연락처가 «학생기록» 시트의 «연락처» 탭에 저장됨(안내 글). / v1.12.1 홈 타일을 작게(아이콘 옆에 제목) — 첫 화면에서 메뉴가 잘리지 않고 다 보임. / v1.12.0 모양 — 기본은 «화이트 + 혜원 레드», 폰이 다크 모드면 «다크 + 민트» / 이름 외우기를 혜원이지에서 뺌(지비스 전용으로 보관) / v1.11.0 이름 외우기 — 지비스가 만든 «폰용 사진 묶음» 을 불러와(사진은 이 폰 안에만) 연습 카드·선택형·서답형·짝맞추기. / v1.10.0 연락처를 폰이 아니라 계정 드라이브의 «혜원이지 연락처» 시트에 — 담임 확인 후 우리 반 것만 불러오고(메모리로만) 폰에서 입력·붙여넣기로 시트에 저장. 문자 보내기는 시트 번호로 받는 사람을 채움. / v1.9.0 주간업무 «입력본 / 합본» 구분 — 합본은 주 목록에서 골라 한 주씩(최신이 맨 위). / v1.8.1 ★홈 타일·하단 바가 눌리지 않던 것 수정 — wire() 안의 로그인용 지역 변수 go 가 이동 함수 go() 를 가려서 «go is not a function» 이었다(v1.4.0부터). / v1.8.0 문자 문구를 «태그 → 내용 고치기 → 자동 미리보기» 작성기로 — 발송 대상(학생/학부모)별 태그(추가·저장·초기화·삭제), {이름}=성 뺀 이름·{성명}=전체, 쓰는 대로 미리보기, 줄바꿈 그대로. / v1.7.0 문자 문구 — 문구 저장·고치기·지우기, 자리표({이름} {날짜} {반} {선생님}), 연락처를 미리 등록(직접·우리 반 명단·붙여넣기·안드로이드 연락처 가져오기)해 받는 사람을 채워 문자 앱을 연다(한 사람씩). 데이터는 이 폰에만. / v1.6.0 급식 여중·여고 점심 둘 다(홈 타일 포함) · 출결(담임 확인: 컴시간 번호·가린 이름 + 역할표, 보기·새 출결 적기·방금 넣은 것 취소). / v1.5.0 시간표에 «학급 시간표» · 급식에 주 넘기기/날짜로 이동/급식지도/날짜·이름 찾기 (다리 v1.2.0 의 what=cls·duty 사용). / v1.4.0 하단 바에 뒤로·앞으로 버튼(홈은 기존 홈 탭) — 화면 기록을 history 로 쌓아 안드로이드 뒤로 버튼과도 같이 감. / v1.3.1 앱 아이콘 로고를 틀 가득(높이 104%, 뾰족한 잎 끝 약간 잘림) · 아이폰용 apple-touch-icon.png 따로. / v1.3.0 하단 내비게이션 바(홈·시간표·급식·학사일정·주간업무·바로가기) · 앱 아이콘 배경을 로고 빨강(#E9030C)으로 · 앱 안 로고는 투명 logo-512.png. / v1.2.9 마스크용 아이콘 — 로고 외접원이 캔버스를 가득(99%) 채우게 키움(흰 틀이 최대한 가려지게). / v1.2.8 앱 아이콘 — 로고를 틀 가득(any 98%·maskable 안전영역 가득) 크게, 배경 투명. / v1.2.7 표 안 글은 원래 줄바꿈 자리에서만 줄바꿈(자동 꺾임 없음) — 넓으면 좌우로 밀어 봄. / v1.2.6 주간업무 읽기 쉽게 — 줄간격 넓힘·번호/기호 내어쓰기와 단계별 들여쓰기·표를 가로로 밀어 보게 하고 짧은 칸은 한 줄로·표 머리줄/줄무늬. / v1.2.5 새로고침해도 옛 판이 뜨던 것(서비스워커) 수정 — sw.js 머리말 참고. / v1.2.4 학사일정 «1년 전체» 칩 + 묵은 탭(ok:false)이 같은 달로 겹쳐 나오던 것 제거. / v1.2.3 학사일정 — 타일 이름을 «학사일정» 으로, 달 칩으로 다른 달도 본다. / v1.2.2 타일 이모지(📘🍚📅📋🔗)를 선 아이콘으로. / v1.2.1 로그인 뒤 홈 머리글에 로고 · 화면에 보이는 버전 표기를 맞춤(그전엔 1.1.0 으로 남아 있었다). / v1.2.0 로그인 화면 로고와 설치용 앱 아이콘을 «혜원» 꽃 3D 로고(투명 배경)로 · icon-192 추가. / v1.1.0 이름을 «혜원이지» 로. / v1.0.0 첫 판 — 타일 홈 + 시간표·급식·학사일정·주간업무·바로가기
+   혜원이지 | @version 1.19.0
+   수정요약: v1.19.0 홈을 지비스 폰처럼 «펼쳐서» — 오늘 수업(시간·지금/다음) · 오늘 급식(여중/여고 단추) · 우리 반 출결(담임일 때) · 앞으로 7일 · 주간업무, 넓은 화면은 두 줄. / v1.18.0 주간업무에 붙은 그림을 원본 그대로 보여 준다(다리 1.1.0 의 img 덩어리) — 표 칸 안·밖 제자리, 누르면 크게(가로로 밀어 읽기), 그림은 폰 저장소에 안 담음. / v1.17.1 시간표 — 오른쪽 요일이 잘리던 것(칸 폭 고정·화면 폭에 맞춤)과 학급 정보 없는 칸의 «null-null» 표시(과목만) 고침. / v1.17.0 앱 잠금(지비스 폰과 같은 방식) — 학교 암호는 처음 한 번만, 그 뒤 앱을 열 때는 지문 또는 숫자 6자리로 해제. 설정에서 다시 잠기는 때·지문·숫자 바꾸기·지금 잠그기. / v1.16.7 로그인(암호) 화면 맨 아래에 버전 표시. / v1.16.6 마스커블 아이콘을 «연한 바탕(#FAFAF9) + 로고(안전 영역 크기)» 로 — 갤럭시 스플래시의 흰/빨간 테두리 박스가 보이지 않게. / v1.16.5 스플래시 — 아이콘을 «투명 배경 로고(크게)» 로, 스플래시 배경을 앱 첫 화면색(#FAFAF9)으로 바꿔 로고만 큼지막하게 보이게(네모 박스 없앰). / v1.16.4 첫 화면 문구 — «혜원여자중학교 선생님을 위해 만들었습니다.» 한 줄(안 잘림) + «폰에서 보는 혜원이지입니다.» 줄바꿈. / v1.16.3 하단 메뉴 편집에서 «더보기 안» 메뉴들도 끌어서(또는 눌러서) 순서를 바꿀 수 있음 — 이 폰에 기억. / v1.16.2 암호를 다시 폰에 기억한다 — 한 번만 넣으면 이후 비번 없이 바로 입장(1.16.1 의 «매번 입력» 되돌림, 2026-10-26 지시). / v1.16.1 암호를 폰에 기억하지 않는다 — 앱을 열 때마다 암호를 넣고 들어옴(메모리에만 보관, 예전 저장값 삭제). / v1.16.0 하단 메뉴를 지비스 폰처럼 «4칸 + 더보기» 로 — 더보기 창에서 나머지 화면을 열고, 하단 메뉴를 꾹 누르거나 «하단 메뉴 편집» 으로 끌어서 순서·구성을 바꾼다(이 폰에만 기억). 뒤로 가기는 위쪽 ‹ 로. / v1.15.0 출결 — 지각/조퇴/결과의 교시 선택·정문 칩·신청사유 예시 문구(✎ 문구, 폰에만 저장)(혜원이지 PC 와 같게). / v1.14.1 컴시간 이름 겹침(김진*)을 다리에서 «김*호» 꼴로 되돌려 담임 확인이 다시 되게 고침. / v1.14.0 문자 문구에 연결된 시트 열기(시트 아이콘 단추) · 하단 메뉴에 출결 탭. / v1.13.0 설정에서 테마 고르기(자동·화이트레드·다크민트) / 출결 목록에서 «삭제»(담임이 제 반 줄만, 앱 안 확인 뒤). / v1.12.2 연락처가 «학생기록» 시트의 «연락처» 탭에 저장됨(안내 글). / v1.12.1 홈 타일을 작게(아이콘 옆에 제목) — 첫 화면에서 메뉴가 잘리지 않고 다 보임. / v1.12.0 모양 — 기본은 «화이트 + 혜원 레드», 폰이 다크 모드면 «다크 + 민트» / 이름 외우기를 혜원이지에서 뺌(지비스 전용으로 보관) / v1.11.0 이름 외우기 — 지비스가 만든 «폰용 사진 묶음» 을 불러와(사진은 이 폰 안에만) 연습 카드·선택형·서답형·짝맞추기. / v1.10.0 연락처를 폰이 아니라 계정 드라이브의 «혜원이지 연락처» 시트에 — 담임 확인 후 우리 반 것만 불러오고(메모리로만) 폰에서 입력·붙여넣기로 시트에 저장. 문자 보내기는 시트 번호로 받는 사람을 채움. / v1.9.0 주간업무 «입력본 / 합본» 구분 — 합본은 주 목록에서 골라 한 주씩(최신이 맨 위). / v1.8.1 ★홈 타일·하단 바가 눌리지 않던 것 수정 — wire() 안의 로그인용 지역 변수 go 가 이동 함수 go() 를 가려서 «go is not a function» 이었다(v1.4.0부터). / v1.8.0 문자 문구를 «태그 → 내용 고치기 → 자동 미리보기» 작성기로 — 발송 대상(학생/학부모)별 태그(추가·저장·초기화·삭제), {이름}=성 뺀 이름·{성명}=전체, 쓰는 대로 미리보기, 줄바꿈 그대로. / v1.7.0 문자 문구 — 문구 저장·고치기·지우기, 자리표({이름} {날짜} {반} {선생님}), 연락처를 미리 등록(직접·우리 반 명단·붙여넣기·안드로이드 연락처 가져오기)해 받는 사람을 채워 문자 앱을 연다(한 사람씩). 데이터는 이 폰에만. / v1.6.0 급식 여중·여고 점심 둘 다(홈 타일 포함) · 출결(담임 확인: 컴시간 번호·가린 이름 + 역할표, 보기·새 출결 적기·방금 넣은 것 취소). / v1.5.0 시간표에 «학급 시간표» · 급식에 주 넘기기/날짜로 이동/급식지도/날짜·이름 찾기 (다리 v1.2.0 의 what=cls·duty 사용). / v1.4.0 하단 바에 뒤로·앞으로 버튼(홈은 기존 홈 탭) — 화면 기록을 history 로 쌓아 안드로이드 뒤로 버튼과도 같이 감. / v1.3.1 앱 아이콘 로고를 틀 가득(높이 104%, 뾰족한 잎 끝 약간 잘림) · 아이폰용 apple-touch-icon.png 따로. / v1.3.0 하단 내비게이션 바(홈·시간표·급식·학사일정·주간업무·바로가기) · 앱 아이콘 배경을 로고 빨강(#E9030C)으로 · 앱 안 로고는 투명 logo-512.png. / v1.2.9 마스크용 아이콘 — 로고 외접원이 캔버스를 가득(99%) 채우게 키움(흰 틀이 최대한 가려지게). / v1.2.8 앱 아이콘 — 로고를 틀 가득(any 98%·maskable 안전영역 가득) 크게, 배경 투명. / v1.2.7 표 안 글은 원래 줄바꿈 자리에서만 줄바꿈(자동 꺾임 없음) — 넓으면 좌우로 밀어 봄. / v1.2.6 주간업무 읽기 쉽게 — 줄간격 넓힘·번호/기호 내어쓰기와 단계별 들여쓰기·표를 가로로 밀어 보게 하고 짧은 칸은 한 줄로·표 머리줄/줄무늬. / v1.2.5 새로고침해도 옛 판이 뜨던 것(서비스워커) 수정 — sw.js 머리말 참고. / v1.2.4 학사일정 «1년 전체» 칩 + 묵은 탭(ok:false)이 같은 달로 겹쳐 나오던 것 제거. / v1.2.3 학사일정 — 타일 이름을 «학사일정» 으로, 달 칩으로 다른 달도 본다. / v1.2.2 타일 이모지(📘🍚📅📋🔗)를 선 아이콘으로. / v1.2.1 로그인 뒤 홈 머리글에 로고 · 화면에 보이는 버전 표기를 맞춤(그전엔 1.1.0 으로 남아 있었다). / v1.2.0 로그인 화면 로고와 설치용 앱 아이콘을 «혜원» 꽃 3D 로고(투명 배경)로 · icon-192 추가. / v1.1.0 이름을 «혜원이지» 로. / v1.0.0 첫 판 — 타일 홈 + 시간표·급식·학사일정·주간업무·바로가기
 
    ★ 폰은 아무것도 긁지 않는다. «다리»(GAS)가 다 긁어서 정리해 준 것만 받는다.
      폰 브라우저는 남의 사이트를 직접 못 부르기 때문이다(같은 출처 규칙).
    ★ 드롭다운(select)은 쓰지 않는다 — 칩·단추로 고른다.
    ══════════════════════════════════════════════════════════ */
 
-var VERSION = '1.18.0';
+var VERSION = '1.19.0';
 /* ── 테마 — auto(폰 설정을 따름) · light(화이트+혜원 레드) · dark(다크+민트). 고른 것은 이 폰에만 기억한다 ── */
 var THEMES = [['auto', '자동', ['#FAFAF9', '#C1121F', '#0E1413', '#5EEAD4']], ['light', '화이트·레드', ['#FAFAF9', '#FFFFFF', '#FCE9EA', '#C1121F']], ['dark', '다크·민트', ['#0E1413', '#172120', '#12302D', '#5EEAD4']]];
 var THEME = (function () { var t = ''; try { t = localStorage.getItem('phone.theme') || ''; } catch (e) { /* */ } return /^(auto|light|dark)$/.test(t) ? t : 'auto'; })();
@@ -573,8 +611,77 @@ function myToday() {
 }
 
 /* ── 홈: 타일 ────────────────────────────────────────── */
+/* ── 홈 — 정보를 «펼쳐서» 보여 준다(지비스 폰과 같은 모양, 2026-10-27) ──────────────────
+   내 시간표(오늘 수업) → 오늘 급식 → 우리 반 출결(담임일 때) → 앞으로 7일 → 주간업무 → 바로가기.
+   ★ 우리 반 출결은 담임 확인(attLoadMe)이 «됐을 때만» 나온다. 담임이 아니면 카드 자체를 그리지 않는다.
+   ★ 출결 자료는 학생 정보라 메모리에만 둔다(잠그면 치워진다). */
+function hcardx(go, ic, title, body) {
+  return '<div class="hcard hcard-x"><button type="button" class="hh" data-go="' + go + '">' + lineIc(ic) + '<b>' + esc(title) + '</b><i class="chev">' + lineIc('next') + '</i></button><div class="hb">' + body + '</div></div>';
+}
+function hcard(go, ic, title, body) {
+  return '<button type="button" class="hcard" data-go="' + go + '"><span class="hh">' + lineIc(ic) + '<b>' + esc(title) + '</b><i class="chev">' + lineIc('next') + '</i></span><span class="hb">' + body + '</span></button>';
+}
+/* 시간표의 시작 시각(«09:10»)에서 한 교시(45분)의 시작·끝을 분으로 */
+function hmRange(start) {
+  var m = String(start || '').match(/(\d{1,2}):(\d{2})/);
+  if (!m) return null;
+  var a = (+m[1]) * 60 + (+m[2]);
+  return { a: a, b: a + 45 };
+}
+function hmTxt(min) { return (min < 600 ? '0' : '') + Math.floor(min / 60) + ':' + ('0' + (min % 60)).slice(-2); }
+function homeLessonsHtml(nowM) {
+  if (!D || !D.tt) return '<span class="muted">' + (LOADING ? '불러오는 중…' : '시간표를 아직 못 받았습니다') + '</span>';
+  if (!ME) return '<span class="muted">내 이름을 먼저 골라 주세요 — 눌러서 고르세요</span>';
+  var mine = myToday();
+  if (!isWeekday() || !mine.length) return '<span class="muted">오늘은 수업이 없습니다</span>';
+  var times = (D.tt && D.tt.times) || {}, nextDone = false;
+  return '<ul class="plist">' + mine.map(function (p) {
+    var tr = hmRange(times[p.p]), state = '';
+    if (tr) { if (nowM >= tr.a && nowM < tr.b) { state = 'now'; nextDone = true; } else if (nowM < tr.a && !nextDone) { state = 'next'; nextDone = true; } else if (nowM >= tr.b) state = 'past'; }
+    return '<li class="' + state + '"><b>' + p.p + '교시</b><span>' + esc(ttLab(p) ? ttLab(p) + ' ' + (p.subject || '') : (p.subject || '수업'))
+      + (tr ? '<small>' + hmTxt(tr.a) + '~' + hmTxt(tr.b) + '</small>' : '') + '</span>' + (state === 'now' ? '<em>지금</em>' : state === 'next' ? '<em>다음</em>' : '') + '</li>';
+  }).join('') + '</ul>';
+}
+function homeMealCard() {
+  var tm = todayMeals();
+  if (!tm.length) return hcard('meal', 'meal', '오늘 급식', '<span class="muted">오늘 점심이 없습니다</span>');
+  var want = LS.get('hsch', ''), cur = tm.filter(function (x) { return x.short === want; })[0] || tm[0];
+  var btns = tm.length > 1 ? '<div class="chips hsch" role="group" aria-label="학교 고르기">' + tm.map(function (x) {
+    return '<button type="button" class="chip' + (x === cur ? ' on' : '') + '" data-hsch="' + esc(x.short) + '" aria-pressed="' + (x === cur) + '">' + esc(x.short || '급식') + '</button>'; }).join('') + '</div>' : '';
+  var dishes = '<div class="hdish">' + cur.m.dishes.map(function (d) { return '<span>' + esc(d) + '</span>'; }).join('') + '</div>' + (cur.m.kcal ? '<div class="muted kc">' + esc(cur.m.kcal) + '</div>' : '');
+  return hcardx('meal', 'meal', '오늘 급식', btns + dishes);
+}
+/* 오늘 걸리는 출결 — 시작일이 오늘이거나, 종료일(체험학습처럼 며칠 이어지는 것)이 오늘 이후인 줄 */
+function attOfToday(rows) {
+  var t = todayStr();
+  return (rows || []).filter(function (x) {
+    if (!x.start) return false;
+    if (x.start === t) return true;
+    return x.start < t && /^\d{4}-\d{2}-\d{2}$/.test(String(x.end || '')) && String(x.end) >= t;
+  });
+}
+function attTodayHtml(list) {
+  if (!isWeekday()) return '<div class="muted">오늘은 주말이라 출결이 없습니다</div>';
+  if (!list || !list.length) return '<div class="allin" role="status">' + lineIc('check') + '<span>오늘은 모두 왔어요</span></div>';
+  return '<ul class="alist">' + list.map(function (x) {
+    var kind = /^인정/.test(x.type || '') ? 'rec' : /^질병/.test(x.type || '') ? 'ill' : 'etc';
+    var when = (x.time ? esc(x.time) : '') + (x.end ? (x.time ? ' ' : '') + (/^\d{4}-/.test(x.end) ? '~ ' + esc(x.end.slice(5).replace('-', '/')) + '까지' : esc(x.end)) : '');
+    return '<li><div class="al1"><b>' + esc(x.name) + '</b><small>' + esc(x.id) + '</small><span class="att-type ' + kind + '">' + esc(x.type) + '</span>' + (when ? '<small>' + when + '</small>' : '') + '</div>'
+      + (x.reason ? '<div class="al2">' + esc(x.reason) + '</div>' : '') + '</li>';
+  }).join('') + '</ul>';
+}
+function homeAttCard() {
+  /* 담임 확인이 아직이면 한 번 시도한다(내 이름이 골라져 있을 때만). 담임이 아니면 카드를 그리지 않는다. */
+  if (ME && attWho() && (ATT.st === 'idle' || ATT.st === 'nowho') && !ATT.busy) { try { attLoadMe(); } catch (e) { /* 무시 */ } }
+  if (ATT.st === 'notmine' || ATT.st === 'nocls' || ATT.st === 'nowho' || ATT.st === 'needcode') return '';
+  var title = (ATT.cls || '우리 반') + ' 출결 · 오늘';
+  if (ATT.st === 'err') return hcardx('att', 'att', title, '<span class="muted">' + esc(ATT.err || '못 받았습니다') + '</span>');
+  if (ATT.st !== 'ok' || !ATT.rows) return hcardx('att', 'att', title, '<span class="muted">' + (ATT.listErr ? esc(ATT.listErr) : '불러오는 중…') + '</span>');
+  var t = todayStr(), m = t.slice(0, 7), mon = ATT.rows.filter(function (x) { return x.start && x.start.slice(0, 7) === m; });
+  return hcardx('att', 'att', title, attTodayHtml(attOfToday(ATT.rows)) + '<div class="astat2">이번 달 ' + mon.length + '건</div>');
+}
 function viewHome() {
-  var d = new Date();
+  var d = new Date(), nowM = d.getHours() * 60 + d.getMinutes();
   var h = '<div class="dayline">'
     + '<b>' + (d.getMonth() + 1) + '월 ' + d.getDate() + '일</b>'
     + '<span>' + todayDow() + '요일</span>';
@@ -582,43 +689,18 @@ function viewHome() {
   if (todayEv.length) h += '<em>' + esc(todayEv[0].event) + '</em>';
   h += '</div>';
 
-  h += '<div class="tiles">';
-
-  /* ① 오늘 수업 */
-  var mine = myToday();
-  var sub;
-  if (!ME) sub = '내 이름을 먼저 고르면<br>오늘 수업이 보입니다';
-  else if (!isWeekday()) sub = '오늘은 수업이 없습니다';
-  else if (!mine.length) sub = '오늘 수업이 없습니다';
-  else sub = mine.slice(0, 3).map(function (p) {
-    return '<b>' + p.p + '교시</b> ' + esc(ttLab(p) ? ttLab(p) + ' ' + (p.subject || '') : (p.subject || '수업'));
-  }).join('<br>') + (mine.length > 3 ? '<br>… 모두 ' + mine.length + '교시' : '');
-  h += tile('tt', 'book', '오늘 수업', sub, !ME || !mine.length);
-
-  /* ② 오늘 급식 */
-  var tm = todayMeals();
-  h += tile('meal', 'meal', '오늘 급식',
-    tm.length ? tm.map(function (x) { return '<b>' + esc(x.short) + '</b> ' + esc(x.m.dishes.slice(0, 3).join(' · ')) + (x.m.dishes.length > 3 ? ' …' : ''); }).join('<br>')
-      : '오늘 점심이 없습니다', !tm.length);
-
-  /* ③ 앞으로 7일 */
-  var nx = (D && D.ac && D.ac.next7) || [];
-  h += tile('ac', 'cal', '학사일정',
-    nx.length ? nx.slice(0, 3).map(function (x) {
-      return '<b>' + esc(x.date.slice(5).replace('-', '/')) + '</b> ' + esc(x.event);
-    }).join('<br>') : '앞으로 7일은 조용합니다', !nx.length);
-
-  /* ④ 주간업무 */
-  var wk = thisWeek();
-  h += tile('work', 'work', '주간업무',
-    wk ? esc(wk.range) + '<br>부서 ' + wk.depts.length + '곳'
-      : '아직 못 받았습니다', !wk);
-
-  /* ⑤ 바로가기 — 넓게 */
-  h += tile('att', 'att', '출결', '담임 선생님 출결 보기 · 적기', false);
-  h += tile('sms', 'sms', '문자 문구', '저장해 둔 문구로 학부모·학생에게 문자', false);
-  h += tile('link', 'link', '바로가기', '학교에서 함께 쓰는 앱', false, 'wide');
+  h += '<div class="hgrid">';
+  h += hcardx('tt', 'book', '오늘 수업', homeLessonsHtml(nowM));          // ① 내 시간표
+  h += homeMealCard();                                                     // ② 오늘 급식
+  h += homeAttCard();                                                      // ③ 우리 반 출결(담임일 때)
+  var nx = (D && D.ac && D.ac.next7) || [];                               // ④ 학사일정
+  h += hcard('ac', 'cal', '앞으로 7일', nx.length ? nx.slice(0, 4).map(function (x) {
+    return '<div class="mrow"><b>' + esc(x.date.slice(5).replace('-', '/')) + '</b>' + esc(x.event) + '</div>';
+  }).join('') : '<span class="muted">앞으로 7일은 조용합니다</span>');
+  var wk = thisWeek();                                                     // ⑤ 주간업무
+  h += hcard('work', 'work', '주간업무', wk ? '<div class="mrow"><b>' + esc(wkShort(wk.range)) + '</b>부서 ' + (wk.depts || []).length + '곳</div>' : '<span class="muted">아직 못 받았습니다</span>');
   h += '</div>';
+  h += '<div class="qrow"><button type="button" data-go="sms">' + lineIc('sms') + '<span>문자 문구</span></button><button type="button" data-go="link">' + lineIc('link') + '<span>바로가기</span></button></div>';
 
   var at = D ? esc(D.at) : LS.get('cacheAt', '');
   h += '<div class="foot">v' + VERSION + ' · 받은 때 ' + esc(at || '—')
@@ -955,7 +1037,7 @@ function attApi(act, extra) {
   });
 }
 function attReset() { ATT.delAsk = -1; ATT.delOk = ''; ATT.st = 'idle'; ATT.me = null; ATT.err = ''; ATT.rows = null; ATT.roster = null; ATT.form = null; ATT.last = null; ATT.msg = ''; }
-function attRedraw() { if (VIEW === 'att' || VIEW === 'sms') draw(); }
+function attRedraw() { if (VIEW === 'att' || VIEW === 'sms' || VIEW === 'home') { if (!LOCK.flow) draw(); } }
 function attLoadMe() {
   if (ATT.busy) return;
   if (!attWho()) { ATT.st = 'nowho'; return; }
@@ -1462,17 +1544,109 @@ function smsLoadRoster(then) {
   }).catch(function (e) { SMS.rosterBusy = false; SMS.msg = '못 받았습니다 — ' + ((e && e.message) || e); if (VIEW === 'sms') draw(); });
 }
 
+/* ── 학년 일정(업무 일정) — 학년부 일지를 «보기만» (v1.18.1) ──────────────────────────
+   지비스 모바일의 «학년 일정» 과 같은 자료. 출결과 같은 길(폰 다리 → 출결 다리)로 받는다 — 읽기 전용이라 고치기는 없다.
+   시트 주소가 등록된 학년만 나온다(지금 3학년. 1·2학년은 주소를 넣으면 저절로 나옴). 폰에는 «내 이름» 을 골라 둬야 받는다. */
+var GP = { grades: null, busy: false, fresh: false, err: '', at: '', on: null, cat: [] };
+(function () {
+  try {
+    var c = JSON.parse(LS.get('gpc', 'null')); if (c && c.grades) { GP.grades = c.grades; GP.at = c.at || ''; }
+    var o = JSON.parse(LS.get('gpon', 'null')); if (Array.isArray(o)) GP.on = o;
+  } catch (e) { /* 처음이면 비움 */ }
+})();
+function gpGrades() { return GP.grades ? Object.keys(GP.grades).map(Number).filter(function (g) { return g >= 1 && g <= 3; }).sort() : []; }
+function gpOnList() { var all = gpGrades(); return GP.on ? GP.on.filter(function (g) { return all.indexOf(g) >= 0; }) : all; }
+function gpLoad(force) {
+  if (GP.busy || (GP.fresh && !force) || !attWho()) return;
+  GP.busy = true; GP.err = '';
+  attApi('plan').then(function (j) {
+    GP.busy = false; GP.fresh = true;     // 실패해도 다시 자동으로 부르지 않는다(새로 받기 단추로만)
+    if (j && j.ok && j.grades) {
+      GP.grades = j.grades; GP.at = j.at || '';
+      var er = Object.keys(j.errors || {}); if (er.length) GP.err = er.join('·') + '학년 일지를 못 읽었습니다';
+      try { LS.set('gpc', JSON.stringify({ grades: j.grades, at: GP.at })); } catch (e) { /* 너무 커도 그만 */ }
+    } else GP.err = (j && j.msg) || '학년 일정을 받지 못했습니다';
+    if (VIEW === 'ac') draw();
+  }).catch(function (e) { GP.busy = false; GP.fresh = true; GP.err = '학년 일정을 못 받았습니다'; if (VIEW === 'ac') draw(); });
+}
+function gpCats() {
+  var out = [];
+  gpOnList().forEach(function (g) { ((GP.grades[String(g)] || {}).cats || []).forEach(function (c) { if (c && out.indexOf(c) < 0) out.push(c); }); });
+  return out;
+}
+function gpOf(m, d) {     // 그 날의 학년 일정 [{g, cat, title, detail, done}] — 켠 학년·고른 구분만
+  var out = [];
+  gpOnList().forEach(function (g) {
+    ((GP.grades[String(g)] || {}).items || []).forEach(function (x) {
+      if (x.month !== m || x.day !== d) return;
+      if (GP.cat.length && GP.cat.indexOf(x.cat) < 0) return;
+      out.push({ g: g, cat: x.cat, title: x.title, detail: x.detail, done: !!x.done });
+    });
+  });
+  return out;
+}
+function gpLine(x) {
+  return '<span class="' + (x.done ? 'gdone' : '') + '"><span class="gtag">' + x.g + '학년</span>' + (x.cat ? '<span class="gtag c">' + esc(x.cat) + '</span>' : '') + esc(x.title)
+    + (x.detail ? '<small class="gsub">' + esc(x.detail) + '</small>' : '') + '</span>';
+}
+function gpBarHtml() {
+  if (!attWho()) return '<div class="card"><h2>학년 일정</h2><div class="muted">시간표에서 «내 이름» 을 골라 두면 3학년 일정도 함께 보여요.</div></div>';
+  if (!GP.grades) {
+    if (GP.busy) return '<div class="card"><div class="muted">학년 일정을 불러오는 중…</div></div>';
+    return GP.err ? '<div class="card"><h2>학년 일정</h2><div class="atwarn">' + esc(GP.err) + '</div><button type="button" class="btn ghost" data-gpreload="1">다시 받기</button></div>' : '';
+  }
+  var gs = gpGrades(); if (!gs.length) return '';
+  var on = gpOnList(), cats = gpCats();
+  var h = '<div class="card"><h2>학년 일정 <small>학사일정에 함께 보기</small></h2><div class="chips">'
+    + (gs.length > 1 ? gs.map(function (g) { return '<button type="button" class="chip' + (on.indexOf(g) >= 0 ? ' on' : '') + '" data-gpg="' + g + '" aria-pressed="' + (on.indexOf(g) >= 0) + '">' + g + '학년</button>'; }).join('') : '')
+    + '<button type="button" class="chip" data-gpreload="1" aria-label="학년 일정 다시 받기">새로 받기</button></div>';
+  if (cats.length) h += '<div class="att-lab" style="margin-top:8px">구분 <small>(안 고르면 전체)</small></div><div class="chips">' + cats.map(function (c) {
+    return '<button type="button" class="chip' + (GP.cat.indexOf(c) >= 0 ? ' on' : '') + '" data-gpc="' + esc(c) + '" aria-pressed="' + (GP.cat.indexOf(c) >= 0) + '">' + esc(c) + '</button>';
+  }).join('') + '</div>';
+  if (GP.err) h += '<div class="atwarn">' + esc(GP.err) + '</div>';
+  if (GP.at) h += '<div class="muted" style="margin-top:6px;font-size:12px">마지막으로 받은 시각 ' + esc(String(GP.at).replace(/-/g, '.')) + '</div>';
+  return h + '</div>';
+}
+function gpMerged7(nx) {    // 앞으로 7일 — 학교 일정과 학년 일정을 날짜별로 합친다 → [{date,dow,events:[],gps:[]}]
+  var by = {}, order = [], DN = ['일', '월', '화', '수', '목', '금', '토'];
+  nx.forEach(function (x) { if (!by[x.date]) { by[x.date] = { date: x.date, dow: x.dow, events: [], gps: [] }; order.push(x.date); } by[x.date].events.push(x.event); });
+  var now = new Date(); now.setHours(0, 0, 0, 0);
+  if (GP.grades) for (var i = 0; i < 7; i++) {
+    var d = new Date(now); d.setDate(now.getDate() + i);
+    var gps = gpOf(d.getMonth() + 1, d.getDate()); if (!gps.length) continue;
+    var key = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+    if (!by[key]) { by[key] = { date: key, dow: DN[d.getDay()], events: [], gps: [] }; order.push(key); }
+    by[key].gps = gps;
+  }
+  return order.sort().map(function (k) { return by[k]; });
+}
+function gpMonthHas(m) { return gpOnList().some(function (g) { return ((GP.grades[String(g)] || {}).items || []).some(function (x) { return x.month === m; }); }); }
+function gpMonthRows(M) {   // 그 달의 줄 — 학교 일정이 있거나 학년 일정이 있는 날만
+  var by = {}, DN = ['일', '월', '화', '수', '목', '금', '토'];
+  (M.days || []).forEach(function (r) { if (r.event) by[r.day] = { day: r.day, dow: r.dow, event: r.event, gps: [] }; });
+  if (GP.grades) {
+    var yy = M.year || new Date().getFullYear();
+    for (var d = 1; d <= 31; d++) {
+      var gps = gpOf(M.month, d); if (!gps.length) continue;
+      if (!by[d]) { var dt = new Date(yy, M.month - 1, d); by[d] = { day: d, dow: DN[dt.getDay()], event: '', gps: [] }; }
+      by[d].gps = gps;
+    }
+  }
+  return Object.keys(by).map(Number).sort(function (a, b) { return a - b; }).map(function (k) { return by[k]; });
+}
+
 /* ── 학사일정 ────────────────────────────────────────── */
 var AC_M = '';   // 학사일정에서 고른 달("2026-10")
 function viewAc() {
   if (!D || !D.ac) return notyet(D && D.acError);
-  var nx = D.ac.next7 || [];
-  var h = '';
+  gpLoad();
+  var rows7 = gpMerged7(D.ac.next7 || []);
+  var h = gpBarHtml();
   h += '<div class="card"><h2>앞으로 7일</h2>';
-  h += nx.length ? nx.map(function (x) {
+  h += rows7.length ? rows7.map(function (x) {
     return '<div class="row"><i>' + esc(x.date.slice(5).replace('-', '/'))
       + '<small style="opacity:.7"> ' + esc(x.dow) + '</small></i>'
-      + '<span>' + esc(x.event) + '</span></div>';
+      + '<span>' + x.events.map(esc).join('<br>') + (x.events.length && x.gps.length ? '<br>' : '') + x.gps.map(gpLine).join('<br>') + '</span></div>';
   }).join('') : '<div class="muted">이레 안에는 별다른 일정이 없습니다.</div>';
   h += '</div>';
 
@@ -1480,7 +1654,7 @@ function viewAc() {
   var now = new Date(), curKey = now.getFullYear() + '-' + (now.getMonth() + 1);
   /* ok:false = 연도가 안 맞는 묵은 탭(예: 8월이 세 탭 — 2025·2026·2027) — 걸러야 같은 달이 겹쳐 안 나온다 */
   var ms = (D.ac.months || []).filter(function (M) {
-    return M.ok !== false && (M.days || []).some(function (r) { return r.event; });
+    return M.ok !== false && ((M.days || []).some(function (r) { return r.event; }) || (GP.grades && gpMonthHas(M.month)));
   }).map(function (M) {
     var yy = M.year || now.getFullYear();
     return { key: yy + '-' + M.month, year: yy, month: M.month, days: M.days || [] };
@@ -1493,13 +1667,13 @@ function viewAc() {
     return '<button type="button" class="chip' + (m.key === AC_M ? ' on' : '') + '" data-acm="' + m.key + '">' + esc(m.month) + '월</button>';
   }).join('') + '</div>';
   ms.filter(function (m) { return AC_M === 'all' || m.key === AC_M; }).forEach(function (M) {
-    var rows = M.days.filter(function (r) { return r.event; });
+    var rows = gpMonthRows(M);
     h += '<div class="card"><h2>' + esc(M.year) + '년 ' + esc(M.month) + '월</h2>'
       + rows.map(function (r) {
         var on = M.key === curKey && r.day === now.getDate();
         return '<div class="row"' + (on ? ' style="font-weight:800"' : '') + '>'
           + '<i>' + r.day + '<small style="opacity:.7"> ' + esc(r.dow) + '</small></i>'
-          + '<span>' + esc(r.event) + '</span></div>';
+          + '<span>' + (r.event ? esc(r.event) : '') + (r.event && r.gps.length ? '<br>' : '') + r.gps.map(gpLine).join('<br>') + '</span></div>';
       }).join('') + '</div>';
   });
   return h;
@@ -1686,6 +1860,7 @@ function FEEDURL() {
 
 /* ── 설정 ────────────────────────────────────────────── */
 var CHANGES = [
+  { v: '1.19.0', items: ['홈이 펼쳐졌어요 — 오늘 수업(지금·다음 표시)부터 오늘 급식·우리 반 출결·학사일정·주간업무를 홈에서 바로 볼 수 있어요'] },
   { v: '1.18.0', items: ['주간업무에 붙은 그림도 그대로 보여요 — 그림을 누르면 크게 볼 수 있어요'] },
   { v: '1.17.0', items: ['앱 잠금이 생겼어요 — 학교 암호는 처음 한 번만 넣고, 그 뒤로는 지문 또는 숫자 6자리로 열어요. 숫자를 잊으면 학교 암호로 다시 들어오면 돼요'] },
   { v: '1.16.3', items: ['하단 메뉴 편집에서 «더보기 안» 메뉴도 끌어서 순서를 바꿀 수 있어요'] },
@@ -2092,6 +2267,17 @@ function wire() {
   APP.querySelectorAll('[data-wkin]').forEach(function (b) { b.addEventListener('click', function () { WK.ii = Number(b.dataset.wkin); draw(); window.scrollTo(0, 0); }); });
   APP.querySelectorAll('[data-wkmg]').forEach(function (b) { b.addEventListener('click', function () { WK.mi = Number(b.dataset.wkmg); WK.err = ''; draw(); window.scrollTo(0, 0); wkShowOn(); }); });
   APP.querySelectorAll('[data-wkretry]').forEach(function (b) { b.addEventListener('click', function () { WK.err = ''; draw(); }); });
+  APP.querySelectorAll('[data-gpg]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var g = Number(b.dataset.gpg), on = gpOnList().slice(), i = on.indexOf(g);
+      if (i >= 0) on.splice(i, 1); else on.push(g);
+      on.sort(); GP.on = on; LS.set('gpon', JSON.stringify(on)); draw();
+    });
+  });
+  APP.querySelectorAll('[data-gpc]').forEach(function (b) {
+    b.addEventListener('click', function () { var c = b.dataset.gpc, i = GP.cat.indexOf(c); if (i >= 0) GP.cat.splice(i, 1); else GP.cat.push(c); draw(); });
+  });
+  APP.querySelectorAll('[data-gpreload]').forEach(function (b) { b.addEventListener('click', function () { gpLoad(true); }); });
   APP.querySelectorAll('[data-acm]').forEach(function (b) {
     b.addEventListener('click', function () { AC_M = b.dataset.acm; draw(); });
   });
@@ -2128,6 +2314,9 @@ function wire() {
     $('gKey').addEventListener('keydown', function (e) { if (e.key === 'Enter') gateGo(); });
     $('gKey').focus();
   }
+  APP.querySelectorAll('[data-hsch]').forEach(function (b) {
+    b.addEventListener('click', function () { LS.set('hsch', b.dataset.hsch); draw(); });
+  });
   APP.querySelectorAll('img[data-wkzoom]').forEach(function (im) {
     im.addEventListener('click', function () { imgZoom(im.currentSrc || im.src, im.alt); });
   });
