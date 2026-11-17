@@ -1,0 +1,125 @@
+<!doctype html>
+<!-- 파일명: room/index.html | 혜원이지 학생 참여 | @version 0.1.0
+     수정요약: v0.1.0 첫 판 — 학생 입장 화면: 학번 + 학생코드(9칸 OTP, 3·3·3 — 혜원핏 학생앱과 같은 모양·같은 코드)를 혜원폰 다리 sc_verify 로 확인한다.
+       익명 투표·원픽·마음관계 분석은 이 화면 위에 차례로 붙인다(방 번호 ?r=).
+     ★ 구글 도메인 밖(GitHub Pages)이라 만 13세 미만 구글 계정 차단에 걸리지 않는다. 학생은 로그인 없이 학번+코드만. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#5b4bd6">
+<title>혜원이지 학생 참여</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root{--bg:#f7f6fb;--fg:#1d1b2e;--card:#fff;--line:#e3e0ef;--dim:#6f6a85;--accent:#5b4bd6;--soft:#eeebfc;--warn:#c2410c;--ok:#059669}
+@media (prefers-color-scheme:dark){:root{--bg:#14131c;--fg:#ecebf5;--card:#1e1c2a;--line:#33304a;--dim:#a19cb8;--accent:#8b7cf6;--soft:#2a2545}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 Pretendard,'Malgun Gothic',sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:420px;margin:0 auto;padding:22px 16px calc(24px + env(safe-area-inset-bottom))}
+.room{display:inline-block;font-size:12.5px;font-weight:800;color:var(--accent);background:var(--soft);border-radius:999px;padding:3px 11px}
+h1{margin:10px 0 2px;font-size:23px;letter-spacing:-.3px}
+.sub{color:var(--dim);font-size:13.5px;margin-bottom:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+label{display:block;font-size:13px;font-weight:800;color:var(--dim);margin-bottom:7px}
+#sid{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px;font:inherit;font-size:20px;font-weight:800;letter-spacing:3px;background:var(--card);color:var(--fg)}
+#sid:focus,.cb:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--soft)}
+.code{display:flex;align-items:center;gap:4px;margin-top:2px}
+.cb{flex:1 1 0;min-width:0;max-width:38px;height:48px;padding:0;text-align:center;font:inherit;font-size:19px;font-weight:800;text-transform:uppercase;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg)}
+.gap{flex:0 0 7px}
+.btn{display:block;width:100%;margin-top:16px;border:0;border-radius:13px;padding:14px;font:inherit;font-weight:800;font-size:16px;background:var(--accent);color:#fff;cursor:pointer}
+.btn:disabled{opacity:.55}
+.err{margin-top:10px;padding:9px 12px;border-radius:10px;background:color-mix(in srgb,var(--warn) 12%,var(--card));color:var(--warn);font-weight:700;font-size:13.5px}
+.hint{font-size:12.5px;color:var(--dim);margin-top:10px}
+.done{text-align:center;padding:26px 10px}
+.done b{display:block;font-size:22px;margin-bottom:6px}
+.foot{text-align:center;color:var(--dim);font-size:11.5px;margin-top:22px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+/* ── 설정 ── 혜원폰 다리(학생 확인 sc_verify 는 열쇠 없이 된다) */
+var BRIDGE = 'https://script.google.com/macros/s/AKfycbzsemwlt0CehxbnVofhLPRrc2jRS1oSZyOpFVUTjBnq1Kohee9RziZFYYS1qLyadBcM/exec';
+var VERSION = '0.1.0', DEPLOYED = '2026-11-17 17:40';
+var Q = new URLSearchParams(location.search), ROOM = (Q.get('r') || '').replace(/\D/g, '').slice(0, 6);
+var ME = null, BUSY = false, ERR = '';
+try { var m0 = JSON.parse(sessionStorage.getItem('hw.me') || 'null'); if (m0 && m0.sid) ME = m0; } catch (e) { /* 처음 */ }
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+function codeBoxes() {
+  var h = '';
+  for (var i = 0; i < 9; i++) { if (i === 3 || i === 6) h += '<span class="gap"></span>'; h += '<input class="cb" maxlength="1" inputmode="text" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" aria-label="' + (i + 1) + '번째 칸">'; }
+  return h;
+}
+function draw() {
+  var head = '<span class="room">' + (ROOM ? '방 ' + esc(ROOM) : '학생 참여') + '</span><h1>' + (ME ? '들어왔어요' : '학생 확인') + '</h1>'
+    + '<div class="sub">' + (ME ? esc(ME.cls) + ' · ' + esc(ME.sid) + ' ' + esc(ME.name) : '학번과 학생코드를 넣어 주세요') + '</div>';
+  var body;
+  if (ME) {
+    body = '<div class="card done"><b>' + esc(ME.name) + ' 학생, 확인됐어요</b><span class="hint">선생님이 투표를 시작하면 이 화면에 나옵니다.</span>'
+      + '<button class="btn" id="out" style="background:var(--soft);color:var(--accent)">다른 학생으로 들어가기</button></div>';
+  } else {
+    body = '<div class="card"><label for="sid">학번</label><input id="sid" inputmode="numeric" maxlength="5" autocomplete="off" placeholder="예: 3213">'
+      + '<label style="margin-top:14px">학생코드 <span style="font-weight:600">(혜원핏과 같은 코드)</span></label><div class="code" id="code">' + codeBoxes() + '</div>'
+      + (ERR ? '<div class="err">' + esc(ERR) + '</div>' : '')
+      + '<button class="btn" id="go"' + (BUSY ? ' disabled' : '') + '>' + (BUSY ? '확인하는 중…' : '들어가기') + '</button>'
+      + '<div class="hint">학번과 코드는 «한 사람이 한 번만» 참여하게 하는 데만 씁니다. 익명 투표는 누가 골랐는지 선생님도 볼 수 없어요.</div></div>';
+  }
+  document.getElementById('app').innerHTML = head + body
+    + '<div class="foot">혜원이지 학생 참여 · v' + VERSION + ' · 배포 ' + DEPLOYED + ' (KST)<br>ⓒKIMJINHO</div>';
+  wire();
+}
+function codeVal() { return Array.prototype.map.call(document.querySelectorAll('.cb'), function (x) { return x.value; }).join('').toUpperCase(); }
+function wire() {
+  var out = document.getElementById('out');
+  if (out) out.onclick = function () { ME = null; try { sessionStorage.removeItem('hw.me'); } catch (e) { /* */ } draw(); };
+  var sid = document.getElementById('sid'); if (!sid) return;
+  var bs = Array.prototype.slice.call(document.querySelectorAll('.cb'));
+  sid.addEventListener('input', function () { sid.value = sid.value.replace(/\D/g, ''); if (sid.value.length === 4) bs[0].focus(); });
+  bs.forEach(function (b, i) {
+    b.addEventListener('input', function () {
+      var v = b.value.replace(/[^0-9a-z]/gi, '').toUpperCase();
+      if (v.length > 1) { fill(i, v); return; }   // 붙여넣기·자동완성
+      b.value = v; if (v && i < bs.length - 1) bs[i + 1].focus();
+      if (v && i === bs.length - 1) go();
+    });
+    b.addEventListener('keydown', function (e) {
+      if (e.key === 'Backspace' && !b.value && i > 0) { e.preventDefault(); bs[i - 1].value = ''; bs[i - 1].focus(); }
+      else if (e.key === 'ArrowLeft' && i > 0) bs[i - 1].focus();
+      else if (e.key === 'ArrowRight' && i < bs.length - 1) bs[i + 1].focus();
+      else if (e.key === 'Enter') go();
+    });
+    b.addEventListener('paste', function (e) { var t = (e.clipboardData || window.clipboardData).getData('text'); if (t) { e.preventDefault(); fill(i, t); } });
+  });
+  function fill(at, text) {
+    var s = String(text).replace(/[^0-9a-z]/gi, '').toUpperCase().split('');
+    for (var k = 0; k < s.length && at + k < bs.length; k++) bs[at + k].value = s[k];
+    var nx = Math.min(at + s.length, bs.length - 1); bs[nx].focus();
+    if (codeVal().length === bs.length) go();
+  }
+  document.getElementById('go').onclick = go;
+  if (!sid.value) sid.focus();
+}
+function go() {
+  if (BUSY) return;
+  var sid = (document.getElementById('sid') || {}).value || '', code = codeVal();
+  if (!/^\d{4}$/.test(sid)) { ERR = '학번 네 자리를 넣어 주세요'; draw(); return; }
+  if (code.length < 4) { ERR = '학생코드를 넣어 주세요'; keepSid(sid); return; }
+  BUSY = true; ERR = ''; draw(); keepSid(sid, code);
+  fetch(BRIDGE + '?what=sc_verify&sid=' + encodeURIComponent(sid) + '&code=' + encodeURIComponent(code), { redirect: 'follow' })
+    .then(function (r) { return r.json(); })
+    .then(function (j) {
+      BUSY = false;
+      if (j && j.ok) { ME = { sid: j.sid, name: j.name, cls: j.cls }; try { sessionStorage.setItem('hw.me', JSON.stringify(ME)); } catch (e) { /* */ } draw(); }
+      else { ERR = (j && j.error) || '확인하지 못했어요'; draw(); keepSid(sid); }
+    }).catch(function () { BUSY = false; ERR = '인터넷 연결을 확인하고 다시 눌러 주세요'; draw(); keepSid(sid, code); });
+}
+function keepSid(sid, code) {   // 다시 그린 뒤에도 적던 학번(과 코드)을 살려 둔다
+  var s = document.getElementById('sid'); if (s) s.value = sid;
+  if (code) { var bs = document.querySelectorAll('.cb'); for (var i = 0; i < bs.length; i++) bs[i].value = code.charAt(i) || ''; }
+  var first = document.querySelector('.cb'); if (first && !code) first.focus();
+}
+draw();
+</script>
+</body>
+</html>

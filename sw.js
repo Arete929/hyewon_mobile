@@ -11,7 +11,7 @@
        ③ controllerchange   — 바뀌면 화면이 스스로 새로고침한다    (index.html)
        ④ visibilitychange   — 앞으로 나올 때마다 새 판을 «찾아본다» (index.html)
      ④ 가 없으면 ①②③ 이 다 있어도 소용없다. 찾아보질 않으니 발견을 못 한다. */
-var CACHE = 'phone-v1.23.4';
+var CACHE = 'phone-v1.23.5';
 var ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-512.png', './icon-192.png', './logo-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', function (e) {
@@ -43,6 +43,7 @@ self.addEventListener('fetch', function (e) {
     || url.hostname.indexOf('googleusercontent') >= 0
     || url.hostname.indexOf('googleapis.com') >= 0 || url.hostname === 'accounts.google.com') return;   // v1.23.0 구글 로그인·시트 API 는 건드리지 않는다
   if (e.request.method !== 'GET') return;
+  if (url.pathname.indexOf('/room/') >= 0) return;   // 학생 참여 화면(room/)은 건드리지 않는다 — 이지폰 화면 대신 담기면 안 된다(v1.23.5)
 
   /* 화면 자체(주소·index.html)는 서버 먼저 — 인터넷이 안 될 때만 담아 둔 것을 쓴다 */
   if (e.request.mode === 'navigate' || url.pathname.slice(-1) === '/' || /\/index\.html$/.test(url.pathname)) {
