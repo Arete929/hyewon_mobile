@@ -11,7 +11,7 @@
        ③ controllerchange   — 바뀌면 화면이 스스로 새로고침한다    (index.html)
        ④ visibilitychange   — 앞으로 나올 때마다 새 판을 «찾아본다» (index.html)
      ④ 가 없으면 ①②③ 이 다 있어도 소용없다. 찾아보질 않으니 발견을 못 한다. */
-var CACHE = 'phone-v1.23.5';
+var CACHE = 'phone-v1.23.6';   // v1.23.5 시트 만들기 드라이브 길
 var ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-512.png', './icon-192.png', './logo-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', function (e) {
